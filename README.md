@@ -10,4 +10,4 @@
 
 > Lines starting with 'F' flag define fields.
 
-> A line starting with and only containing the 'E' flag ends the message.
+> Lines starting with 'E' flag end a method definition.

@@ -4,6 +4,10 @@ import java.text.*;
 import java.lang.*;
 
 public class RunAppTerminal {
+	private final String COMMENT_FLAG = "#";
+	private final String METHOD_START_FLAG = "M";
+	private final String FIELD_FLAG = "F";
+	private final String METHOD_END_FLAG = "E";
 	private String inputFile;
 	private String lang;
 
@@ -14,10 +18,34 @@ public class RunAppTerminal {
 
 	public RunAppTerminal(final String inputFile) {
 		this.inputFile = inputFile;
-		this.lang = "C";
 	}
 
 	public void run() {
+		boolean run = true;
+		while(run) {
+			System.out.println();
+			System.out.println("========================================");
+			System.out.println("========================================");
+			System.out.println("Type a number to select a language.");
+			System.out.println("Or type 0 to exit");
+			System.out.println("(1)  For C");
+			System.out.println("(0)  To Exit");
+			String input = System.console().readLine().trim();
+			if (input.equals("1")) {
+				System.out.println();
+				System.out.println();
+				this.setLang("C");
+				this.readAndProcessFile();
+				System.out.println();
+				System.out.println();
+			} else if (input.equals("0")) {
+				run = false;
+			}
+		}
+
+	}
+
+	public void readAndProcessFile() {
 		List<String> filesLines = readFile(this.getInputFile());
         LanguageFactory langFactory = new LanguageFactory();
         Language lang = langFactory.getLanguage(this.getLang());
@@ -30,13 +58,13 @@ public class RunAppTerminal {
     	String lineFlag = lineText.substring(0,1);
     	String lineContent = lineText.substring(1);
     	String newLine;
-    	if(lineFlag.equals("#")){
+    	if(lineFlag.equals(COMMENT_FLAG)){
     		lineContent = lang.processCommentLine(lineContent);
-    	} else if(lineFlag.equals("M")) {
+    	} else if(lineFlag.equals(METHOD_START_FLAG)) {
     		lineContent = lang.processMethodStartLine(lineContent);
-    	} else if(lineFlag.equals("F")) {
+    	} else if(lineFlag.equals(FIELD_FLAG)) {
     		lineContent = lang.processFieldLine(lineContent);
-    	} else if(lineFlag.equals("E")) {
+    	} else if(lineFlag.equals(METHOD_END_FLAG)) {
     		lineContent = lang.processMethodEndLine();
     	}
     	return lineContent;

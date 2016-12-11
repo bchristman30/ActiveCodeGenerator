@@ -8,9 +8,7 @@ JC = javac
 
 CLASSES = \
 	ActiveCodeGenerator.java \
-	Language.java \
-	CLanguage.java \
-
+	
 default: classes
 
 classes: $(CLASSES:.java=.class)

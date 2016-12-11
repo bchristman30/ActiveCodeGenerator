@@ -11,7 +11,8 @@ public class ActiveCodeGenerator {
         String filename = args[0];
         //String language = args[1];
         List<String> filesLines = readFile(filename);
-        Language lang = new CLanguage();
+        LanguageFactory langFactory = new LanguageFactory();
+        Language lang = langFactory.getLanguage("C");
         for (String line: filesLines) {
         	System.out.println(processLine(line,lang));
         }

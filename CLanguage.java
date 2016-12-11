@@ -1,13 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class CLanguage extends Language {
+public class CLanguage implements Language {
 	private String START_COMMENT = "/*";
 	private String END_COMMENT = "*/";
 	private String METHOD_START = "typedef struct {";
 	private String methodName;
-
-	public CLanguage() {}
 
 	public String processCommentLine(String comment) {
     	return START_COMMENT + comment + END_COMMENT;

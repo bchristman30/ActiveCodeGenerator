@@ -4,6 +4,8 @@ public class LanguageFactory {
 			return null;
 		} else if (lang.equals("C")) {
 			return new CLanguage();
+		} else if (lang.equals("Java")) {
+			return new JavaLanguage();
 		}
 		return null;
 	}

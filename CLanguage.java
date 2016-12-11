@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class CLanguage implements Language {
 	private String START_COMMENT = "/*";
 	private String END_COMMENT = "*/";

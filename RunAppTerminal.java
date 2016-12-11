@@ -21,26 +21,27 @@ public class RunAppTerminal {
 	}
 
 	public void run() {
-		boolean run = true;
-		while(run) {
+		while(true) {
 			System.out.println();
 			System.out.println("========================================");
 			System.out.println("========================================");
 			System.out.println("Type a number to select a language.");
 			System.out.println("Or type 0 to exit");
 			System.out.println("(1)  For C");
+			System.out.println("(2)  For Java");
 			System.out.println("(0)  To Exit");
 			String input = System.console().readLine().trim();
 			if (input.equals("1")) {
-				System.out.println();
-				System.out.println();
 				this.setLang("C");
-				this.readAndProcessFile();
-				System.out.println();
-				System.out.println();
-			} else if (input.equals("0")) {
-				run = false;
+			} else if (input.equals("2")) {
+				this.setLang("Java");
 			}
+			 else if (input.equals("0")) {
+				break;
+			}
+			System.out.println();
+			System.out.println();	
+			this.readAndProcessFile();
 		}
 
 	}

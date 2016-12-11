@@ -26,6 +26,7 @@ public class JavaLanguage implements Language {
     }
 
     private String formatFieldName(final String fieldName){
+    	// convert '_' to camelCase
     	if(fieldName.contains("_")) {
     		String[] fieldNameSplit = fieldName.split("_");
     		StringBuilder sb = new StringBuilder();

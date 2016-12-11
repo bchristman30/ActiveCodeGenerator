@@ -22,28 +22,32 @@ public class RunAppTerminal {
 
 	public void run() {
 		while(true) {
-			System.out.println();
-			System.out.println("========================================");
-			System.out.println("========================================");
-			System.out.println("Type a number to select a language.");
-			System.out.println("Or type 0 to exit");
-			System.out.println("(1)  For C");
-			System.out.println("(2)  For Java");
-			System.out.println("(0)  To Exit");
+			System.out.println(this.writePrompt());
 			String input = System.console().readLine().trim();
 			if (input.equals("1")) {
 				this.setLang("C");
 			} else if (input.equals("2")) {
 				this.setLang("Java");
-			}
-			 else if (input.equals("0")) {
+			} else if (input.equals("0")) {
 				break;
 			}
-			System.out.println();
-			System.out.println();	
-			this.readAndProcessFile();
+			if(this.getLang() != null) {
+				System.out.println("\n\n********** " + this.getLang() + " Code **********");	
+				this.readAndProcessFile();
+			}	
 		}
+	}
 
+	private String writePrompt() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n");
+		sb.append("========================================\n");
+		sb.append("========================================\n");
+		sb.append("Type a number to select a language.\n");
+		sb.append("(1)  For C\n");
+		sb.append("(2)  For Java\n");
+		sb.append("(0)  To Exit\n");
+		return sb.toString();
 	}
 
 	public void readAndProcessFile() {

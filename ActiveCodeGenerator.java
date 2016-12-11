@@ -11,45 +11,28 @@ public class ActiveCodeGenerator {
         String filename = args[0];
         //String language = args[1];
         List<String> filesLines = readFile(filename);
+        Language lang = new CLanguage();
         for (String line: filesLines) {
-        	System.out.println(processLine(line));
+        	System.out.println(processLine(line,lang));
         }
     }
 
-    private static String processLine(String lineText) {
+    private static String processLine(final String lineText,final Language lang) {
     	String lineFlag = lineText.substring(0,1);
     	String lineContent = lineText.substring(1);
     	String newLine;
     	if(lineFlag.equals("#")){
-    		lineContent = processCommentLine(lineContent);
+    		lineContent = lang.processCommentLine(lineContent);
     	} else if(lineFlag.equals("M")) {
-    		methodName = lineContent;
-    		lineContent = processMethodStartLine(lineContent);
+    		lineContent = lang.processMethodStartLine(lineContent);
     	} else if(lineFlag.equals("F")) {
-    		lineContent = processFieldLine(lineContent);
+    		lineContent = lang.processFieldLine(lineContent);
     	} else if(lineFlag.equals("E")) {
-    		lineContent = processMethodEndLine();
+    		lineContent = lang.processMethodEndLine();
     	}
     	return lineContent;
     }
-
-    private static String processCommentLine(String comment) {
-    	return "/*" + comment + " */";
-    }
-
-    private static String processMethodStartLine(String methodStart) {
-    	return "typedef struct {";
-    }
-
-    private static String processFieldLine(String field){
-    	String[] fieldVal = field.trim().split("\\s+"); 
-    	return String.format("   %-10s %s",fieldVal[1],fieldVal[0]);
-    }
-
-    private static String processMethodEndLine() {
-    	return "} " + methodName + "msg";
-    }
-
+    
     private static List<String> readFile(String filename) {
   		List<String> records = new ArrayList<String>();
   		try {

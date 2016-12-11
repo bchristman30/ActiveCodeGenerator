@@ -1,9 +1,10 @@
 JFLAGS = -cp . -g -d
+XLINT = -Xlint:unchecked
 CLASSESDIR = bin
 JC = javac
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) $(CLASSESDIR) $*.java
+	$(JC) $(XLINT) $(JFLAGS) $(CLASSESDIR) $*.java
 
 CLASSES = \
 	ActiveCodeGenerator.java \

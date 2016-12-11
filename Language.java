@@ -1,7 +1,6 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Language {
-	protected Map comment;
-	abstract String writeComment();
+	public abstract String processCommentLine(final String comment);
+	public abstract String processMethodStartLine(final String methodStart);
+    public abstract String processFieldLine(final String field);
+    public abstract String processMethodEndLine();
 }

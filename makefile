@@ -1,16 +1,14 @@
-JFLAGS = -g -d bin
+JFLAGS = -cp . -g -d
+CLASSESDIR = bin
 JC = javac
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) $(classpath)$*.java
+	$(JC) $(JFLAGS) $(CLASSESDIR) $*.java
 
 CLASSES = \
 	ActiveCodeGenerator.java \
 	Language.java \
-
-ifndef classpath
-export classpath = $(PWD)/src/
-endif
+	CLanguage.java \
 
 default: classes
 

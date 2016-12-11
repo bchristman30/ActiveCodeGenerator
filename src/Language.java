@@ -1,3 +1,3 @@
-public class Language {
-	
+public abstract class Language {
+	abstract String writeComment();
 }
